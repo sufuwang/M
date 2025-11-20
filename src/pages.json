@@ -17,6 +17,18 @@
 			"style": {
 				"navigationBarTitleText": "心栖助手"
 			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "心栖助手"
+			}
+		},
+		{
+			"path": "pages/profile/index",
+			"style": {
+				"navigationBarTitleText": "心栖助手"
+			}
 		}
 	],
 	"tabBar": {

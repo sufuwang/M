@@ -1,0 +1,54 @@
+page {
+  /* ===== 主色系 - 心理健康治愈绿 ===== */
+  --color-primary: #4CAF50;          /* 主按钮、主操作 */
+  --color-primary-light: #E8F5E9;    /* 浅背景、气泡、卡片背衬 */
+  --color-primary-dark: #3E8E41;     /* 悬浮态、深色提示 */
+
+  /* ===== 品牌辅助色 ===== */
+  --color-success: #66BB6A;
+  --color-warning: #FFB74D;
+  --color-danger:  #EF9A9A;
+  --color-info:    #42A5F5;
+
+  /* ===== 中立灰色系统（标准信息层级） ===== */
+  --color-text-strong: #333333;  /* 主文字 */
+  --color-text-normal: #666666;  /* 次文字 */
+  --color-text-weak:   #999999;  /* 辅助文字 */
+
+  --color-border:      #E0E0E0;  /* 默认边框 */
+  --color-divider:     #F0F0F0;  /* 更浅分割线 */
+
+  /* ===== 背景色 ===== */
+  --color-bg:          #F7F9FA;  /* 页面背景 */
+  --color-bg-card:     #FFFFFF;  /* 卡片、内容结构 */
+  --color-bg-hover:    #F2F8F5;
+
+  /* ===== 阴影（轻量、柔和） ===== */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-light: 0 1px 4px rgba(0, 0, 0, 0.04);
+
+  /* ===== 圆角统一规范 ===== */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
+
+  /* ===== 字号（遵循前端默认层级） ===== */
+  --font-size-xxs: 10px;
+  --font-size-xs:  12px;
+  --font-size-sm:  14px;
+  --font-size-md:  16px;
+  --font-size-lg:  18px;
+  --font-size-xl:  20px;
+  --font-size-xxl: 24px;
+
+  /* ===== 控件大小 ===== */
+  --btn-height: 42px;
+  --btn-padding: 0 16px;
+
+  /* ===== 动画规范 ===== */
+  --anim-fast: 120ms;
+  --anim-normal: 200ms;
+  --anim-slow: 350ms;
+}
