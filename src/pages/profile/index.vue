@@ -59,7 +59,8 @@ async function onSubmit() {
   const body = {
     user_id,
     avatar_url: avatarUrl.value,
-    nickname: nickname.value
+    nickname: nickname.value,
+    conversation_id: '',
   }
   uni.request({
     url: `${import.meta.env.VITE_API_BASE}/user/save-wx-info`,

@@ -1,22 +1,26 @@
 <script setup lang="ts">
-import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
-onLaunch(() => {
-  console.log("App Launch");
-});
+import { onShow } from "@dcloudio/uni-app";
+
 onShow(async () => {
-  const data = await uni.getStorageSync('wx-user-info')
-  if (!data.user_id || !data.conversation_id) {
-    uni.showToast({ title: '请先登录', icon: 'error' })
-    setTimeout(() => {
-      uni.redirectTo({
-        url: '/pages/login/index'
-      })
-    }, 500)
+  const data = uni.getStorageSync('wx-user-info') ?? {}
+  if (data.user_id) {
+    uni.request({
+      url: `${import.meta.env.VITE_API_BASE}/user/wx-info?user_id=${data.user_id}`,
+      method: 'GET',
+      success(res: any) {
+        const { data } = res.data
+        uni.setStorageSync('wx-user-info', data)
+        if (!data.avatar_url || !data.nickname) {
+          uni.showToast({ title: '请先完善个人信息', icon: 'error' })
+          setTimeout(() => {
+            uni.redirectTo({
+              url: '/pages/profile/index'
+            })
+          }, 500)
+        }
+      }
+    })
   }
-  console.log("App Show: ", data);
-});
-onHide(() => {
-  console.log("App Hide");
 });
 </script>
 <style lang='scss'>
