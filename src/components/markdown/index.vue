@@ -1,10 +1,9 @@
 <template>
-  <view v-if="props.content" :class="{ container: !props.expand }">
-    <mp-html
-      :content="props.content"
-      :tag-style="tagStyles"
-      :markdown="true"
-    />
+  <view v-if="props.content">
+    <up-read-more v-if="props.canExpand" :toggle="true" showHeight="600" :shadowStyle="shadowStyle">
+      <mp-html :content="props.content" :tag-style="tagStyles" :markdown="true" />
+    </up-read-more>
+    <mp-html v-else :content="props.content" :tag-style="tagStyles" :markdown="true" />
   </view>
   <view v-else>无数据</view>
 </template>
@@ -14,9 +13,14 @@ import mpHtml from 'mp-html/dist/uni-app/components/mp-html/mp-html'
 
 const props = defineProps<{
   content: string
-  expand?: boolean
+  canExpand?: boolean
 }>()
 
+const shadowStyle = {  
+  backgroundImage: "none",  
+  paddingTop: "0",  
+  marginTop: "0"  
+} 
 const tagStyles = {
   hr: `
     border: none;
@@ -24,7 +28,14 @@ const tagStyles = {
     height: 1px;
     background: #ddd;
   `,
-  h3: 'margin: 6px 0;',
+  h3: `
+    text-indent: 0px;
+  `,
+  li: `
+    margin: 0px;
+    padding: 0px;
+    text-indent: -4px;
+  `,
   
   // 表格容器 - 启用横向滚动
   table: `
@@ -71,8 +82,4 @@ const tagStyles = {
 }
 </script>
 <style scoped lang="scss">
-.container {
-  max-height: 72vh;
-  overflow-y: auto;
-}
 </style>

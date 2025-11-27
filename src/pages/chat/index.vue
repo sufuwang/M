@@ -1,5 +1,5 @@
 <template>
-  <view class="chat">
+  <view v-if="messages.length" class="chat">
     <scroll-view
       v-if="messages.length"
       scroll-y
@@ -15,24 +15,21 @@
         :key="item.role + item.id"
         :id="item.id"
       >
-        <!-- AI 头像 -->
-        <image
+        <!-- <image
           v-if="item.role === 'ai'"
           class="avatar"
           src="/static/logo.png"
         />
-
-        <!-- 用户头像 -->
         <image
           v-if="item.role === 'user'"
           class="avatar"
           :src="userAvatar"
-        />
+        /> -->
 
         <!-- 内容 -->
-        <view class="bubble" :style="{ padding: `${item.role === 'user' ? '10px' : '0px'} 14px 10px 14px;` }">
+        <view class="bubble" :style="{ padding: `${item.role === 'user' ? '8px' : '0px'} 10px 8px 10px;` }">
           <text v-if="item.role === 'user'">{{ item.content }}</text>
-          <Markdown v-else :content="item.content" :expand="index === messages.length - 1" />
+          <Markdown v-else :content="item.content" :canExpand="index !== messages.length - 1" />
           <!-- 时间 -->
           <text class="date">{{ item.date }}</text>
         </view>
@@ -283,11 +280,11 @@ onBeforeUnmount(() => {
 </script>
 <style lang="scss" scoped>
 .chat {
+
   > .chat-list {
-    height: 100vh;
-    // height: calc(100vh - 50px);
+    height: calc(100vh - 50px);
     width: 100%;
-    padding: 6px;
+    padding: 8px;
     box-sizing: border-box;
     .message-row {
       display: flex;
@@ -295,7 +292,7 @@ onBeforeUnmount(() => {
       align-items: flex-start;
 
       &:last-child {
-        padding-bottom: 80px; /* 底部输入框高度 + 间距 */
+        padding-bottom: 20px; /* 底部输入框高度 + 间距 */
       }
     }
 
@@ -311,8 +308,7 @@ onBeforeUnmount(() => {
 
     /* 气泡 */
     .bubble {
-      max-width: 86%;
-      border-radius: 12px;
+      width: fit-content;
       box-sizing: border-box;
     }
     
@@ -320,6 +316,8 @@ onBeforeUnmount(() => {
     .message-row.ai .bubble {
       background-color: #E8F5E9;
       color: #333;
+      border-radius: 10px 10px 10px 0;
+
       > .date {
         display: block;
         font-size: 14px;
@@ -332,6 +330,8 @@ onBeforeUnmount(() => {
     .message-row.user .bubble {
       background-color: #4CAF50;
       color: #fff;
+      border-radius: 10px 10px 0;
+
       > .date {
         display: block;
         font-size: 14px;
@@ -361,11 +361,8 @@ onBeforeUnmount(() => {
     display: flex;
     align-items: center;
     z-index: 10;
-    padding: 12px 10px 10px 10px;
-
-    background-color: rgba(255, 255, 255, .4); /* 半透明背景 */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px); /* iOS /部分平台兼容 */ 
+    padding: 10px 8px;
+    background-color: white;
 
     > .input-field {
       flex: 1;
@@ -377,10 +374,6 @@ onBeforeUnmount(() => {
       font-size: 16px;
       color: var(--color-text-strong);
       box-sizing: border-box;
-
-      background-color: rgba(255, 255, 255, .4); /* 半透明背景 */
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px); /* iOS /部分平台兼容 */ 
     }
     > .send-btn {
       z-index: 11;
